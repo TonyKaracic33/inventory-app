@@ -25,15 +25,15 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { addProduct } from "../api/api";
 
 export default {
-  name: 'AddProduct',
+  name: "AddProduct",
   data() {
     return {
-      name: '',
-      manufacturer: '',
-      origin: '',
+      name: "",
+      manufacturer: "",
+      origin: "",
       quantity: 0,
     };
   },
@@ -46,14 +46,14 @@ export default {
           origin: this.origin,
           quantity: this.quantity,
         };
-        await axios.post('http://localhost:3000/api/products', newProduct);
-        this.$emit('product-added');
-        this.name = '';
-        this.manufacturer = '';
-        this.origin = '';
+        await addProduct(newProduct);
+        this.$emit("product-added");
+        this.name = "";
+        this.manufacturer = "";
+        this.origin = "";
         this.quantity = 0;
       } catch (error) {
-        console.error('Failed to add product:', error);
+        console.error("Failed to add product:", error);
       }
     },
   },
